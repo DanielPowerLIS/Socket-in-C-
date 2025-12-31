@@ -32,5 +32,12 @@ int main(){
     serverAddr.sin_addr.s_addr = INADDR_ANY;
     serverAddr.sin_port = htons(8080);
 
+    if(bind(serverSocket, (sockaddr*) &serverAddr, sizeof(serverAddr)) == SOCKET_ERROR){
+        cout << "Bind failed." << endl;
+        closesocket(serverSocket);
+        WSACleanup();
+        return 1;
+    }
+
     return 0;
 }
